@@ -40,3 +40,6 @@ pip install httpx
 ```bash
 python -m pytest
 ```
+
+# Project structure
+The file __init__.py marks a directory as a Python package, which allows you to import from it.
