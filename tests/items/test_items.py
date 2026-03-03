@@ -31,3 +31,13 @@ def test_add_item():
     })
     assert response.status_code == 200
     assert response.json()["added"]["name"] == "Screwdriver"
+
+def test_add_item_duplicate_returns_400():
+    response = client.post(base_path, json={
+        "name": "Hammer",
+        "price": 9.99,
+        "count": 20,
+        "id": 0,
+        "category": "tools"
+    })
+    assert response.status_code == 400
