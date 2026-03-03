@@ -18,3 +18,14 @@ def test_query_item_by_id_returns_404():
 def test_query_item_by_parameters():
     response = client.get("/items/?name=Nails")
     assert response.status_code == 200
+
+def test_add_item():
+    response = client.post("/", json={
+        "name": "Screwdriver",
+        "price": 3.99,
+        "count": 10,
+        "id": 3,
+        "category": "tools"
+    })
+    assert response.status_code == 200
+    assert response.json()["added"]["name"] == "Screwdriver"

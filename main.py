@@ -64,3 +64,12 @@ def query_item_by_parameters(
         "query": {"name": name, "price": price, "count": count, "category": category},
         "selection": selection,
     }
+
+@app.post("/")
+def add_item(item: Item) -> dict[str, Item]:
+    if item.id in items:
+        HTTPException(status_code=400, detail=f"Item with {item.id=} already exists.")
+
+    items[item.id] = item
+    return {"added": item}
+
